@@ -1,34 +1,33 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function CardDetails({ movies }) {
-  const { id } = useParams();
+export default function CardDetails() {
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const movie = movies.find((_, index) => index.toString() === id);
 
-  if (!movie) {
-    return (
-      <div className="text-white text-center mt-20">
-        <h2 className="text-2xl">Movie Not Found 😢</h2>
-        <button onClick={() => navigate(-1)} className="mt-4 bg-red-600 px-4 py-2 rounded">
-          Go Back
-        </button>
-      </div>
-    );
-  }
+  // movie data is received from state
+  const movie = state?.movie;
+
+  if (!movie) return <p className="text-center text-white mt-20">Movie not found.</p>;
 
   return (
-    <div className="bg-black min-h-screen text-white flex flex-col items-center justify-center p-8">
-      <img src={movie.img} alt={movie.title} className="w-64 rounded-lg shadow-lg mb-6" />
-      <h1 className="text-4xl font-bold mb-2">{movie.title}</h1>
-      <p className="text-gray-300 mb-4 max-w-lg text-center">{movie.description}</p>
-      <div className="text-gray-400 text-sm mb-6 space-y-1 text-center">
-        <p><span className="text-gray-200 font-semibold">Genre:</span> {movie.genre}</p>
-        <p><span className="text-gray-200 font-semibold">Release Date:</span> {movie.releaseDate}</p>
-        <p><span className="text-gray-200 font-semibold">Rating:</span> ⭐ {movie.rating}/10</p>
-      </div>
-      <button onClick={() => navigate(-1)} className="mt-4 bg-red-600 px-6 py-2 rounded hover:bg-red-700 transition">
-        Back to Home
+    <div className="bg-black text-white min-h-screen p-8">
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-6 text-red-500 hover:underline"
+      >
+        ← Back
       </button>
+
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <img src={movie.img} alt={movie.title} className="w-72 rounded-lg shadow-lg" />
+        <div>
+          <h2 className="text-4xl font-bold mb-4">{movie.title}</h2>
+          <p className="text-gray-300 mb-4">{movie.description}</p>
+          <p><strong>Genre:</strong> {movie.genre}</p>
+          <p><strong>Release Date:</strong> {movie.releaseDate}</p>
+          <p><strong>Rating:</strong> ⭐ {movie.rating}</p>
+        </div>
+      </div>
     </div>
   );
 }
