@@ -3,12 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function CardDetails() {
   const { state } = useLocation();
   const navigate = useNavigate();
-
-  // movie data is received from state
   const movie = state?.movie;
-
-  if (!movie) return <p className="text-center text-white mt-20">Movie not found.</p>;
-
   return (
     <div className="bg-black text-white min-h-screen p-8">
       <button

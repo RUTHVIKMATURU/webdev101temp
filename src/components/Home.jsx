@@ -51,13 +51,7 @@ const movies = [
 export default function Home() {
   return (
     <div className="bg-black text-white min-h-screen">
-      <nav className="flex items-center justify-between px-8 py-4 bg-black bg-opacity-70 fixed top-0 left-0 w-full z-10">
-        <h1 className="text-3xl font-bold text-red-600">NETFLIX</h1>
-        <div className="space-x-4">
-          <Link to="/login" className="text-sm text-gray-300 hover:underline">Log in</Link>
-          <Link to="/signup" className="text-sm text-gray-300 hover:underline">Sign up</Link>
-        </div>
-      </nav>
+      
 
       <div className="pt-20 px-8">
         <h2 className="text-3xl font-bold mb-6">Popular on Netflix</h2>
